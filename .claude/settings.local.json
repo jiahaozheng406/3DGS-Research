@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia -y)",
+      "Bash(python -c \"import torch; print\\(''PyTorch:'', torch.__version__\\); print\\(''CUDA:'', torch.cuda.is_available\\(\\)\\)\")",
+      "Bash(export KMP_DUPLICATE_LIB_OK=TRUE)",
+      "Bash(export PYTHONNOUSERSITE=1)",
+      "Bash(conda install -c conda-forge transformers==4.38.0 diffusers==0.25.1 -y)",
+      "Bash(conda create -n difix3d python=3.10 -y)",
+      "Bash(conda activate difix3d)",
+      "Bash(conda run -n difix3d conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia -y)",
+      "Bash(conda run -n difix3d pip install torchmetrics wandb einops lpips imageio[ffmpeg])",
+      "Bash(source activate difix3d)",
+      "Bash(pip install torchmetrics wandb einops lpips imageio[ffmpeg])",
+      "Bash(pip install peft==0.9.0 diffusers==0.25.1 huggingface-hub==0.21.4 transformers==4.38.0 accelerate)",
+      "Bash(conda install -c conda-forge \"tokenizers>=0.14,<0.19\" -y)",
+      "Bash(pip install transformers==4.38.0 diffusers==0.25.1 huggingface-hub==0.21.4 peft==0.9.0 accelerate --no-deps)",
+      "Bash(pip install huggingface-hub==0.21.4 --force-reinstall)",
+      "Bash(pip install safetensors)",
+      "Bash(python -c \"import tokenizers; print\\(''tokenizers installed''\\)\")",
+      "Bash(python -c \"import huggingface_hub; print\\(huggingface_hub.__version__\\); print\\(huggingface_hub.__file__\\)\")",
+      "Bash(pip install huggingface-hub==0.21.4)",
+      "Bash(pip install transformers==4.38.0 --force-reinstall --no-deps)",
+      "Bash(python check_env.py)",
+      "Bash(D:miniconda3envsdifix3dpython.exe \"E:\\\\3dgsplus\\\\DIFIX3D+\\\\Difix3D\\\\check_env.py\")",
+      "Bash(/d/miniconda3/envs/difix3d/python.exe check_env.py)",
+      "Bash(conda run -n difix3d --no-capture-output python check_env.py)",
+      "Bash(powershell.exe -Command \"cd ''E:\\\\3dgsplus\\\\DIFIX3D+\\\\Difix3D''; conda activate difix3d; pip install diffusers==0.25.1 transformers==4.38.0 huggingface-hub==0.21.4 peft==0.9.0 accelerate; $env:KMP_DUPLICATE_LIB_OK=''TRUE''; python test_quickstart.py\")",
+      "Bash(ls -la *.py *.bat *.md)",
+      "Bash(ls -la *.py *.png)"
+    ]
+  }
+}

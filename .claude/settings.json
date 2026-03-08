@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install -r requirements.txt)",
+      "Bash(where cargo)",
+      "Bash(export PATH=\"$HOME/.cargo/bin:$PATH\")",
+      "Bash(cargo --version)",
+      "Read(//e/3dgsplus/DIFIX3D+/Difix3D/$USERPROFILE/.cargo/**)",
+      "Read(//e/3dgsplus/DIFIX3D+/Difix3D/$LOCALAPPDATA/puccinialin/puccinialin/Cache/**)",
+      "Bash(pip install torch torchvision torchmetrics einops lpips xformers peft==0.9.0 diffusers==0.25.1 huggingface-hub==0.25.1 transformers==4.38.0)",
+      "Bash(python -c \"import sys; print\\(f''Python {sys.version_info.major}.{sys.version_info.minor}''\\)\")",
+      "Bash(source activate sharp)",
+      "Bash(python test_quickstart.py)",
+      "Bash(pip install --user httpx)",
+      "Bash(pip uninstall -y huggingface-hub)",
+      "Bash(pip install --user huggingface-hub==0.21.4 --no-deps)",
+      "Bash(pip install --user huggingface-hub==0.21.4 --force-reinstall --no-deps)",
+      "Bash(python -c \"import sys; print\\(''\\\\n''.join\\(sys.path\\)\\)\")",
+      "Bash(python test_simple.py)"
+    ]
+  }
+}
