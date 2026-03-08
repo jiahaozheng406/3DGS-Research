@@ -1,8 +1,14 @@
-# 3DGS Research
+# 3DGS Research | 3D高斯溅射研究
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+[English](#english) | [中文](#中文)
+
+---
+
+## English
 
 A collection of 3D Gaussian Splatting research implementations and paper reproductions.
 
@@ -158,3 +164,161 @@ For questions or issues:
 ## ⚠️ Disclaimer
 
 This repository is for research and educational purposes only. The implementations are based on publicly available papers and code. All credits go to the original authors.
+
+---
+
+## 中文
+
+3D高斯溅射（3D Gaussian Splatting）研究论文实现与复现集合。
+
+## 📚 已实现论文
+
+### DIFIX3D+: 使用单步扩散模型改进3D重建
+
+**作者**: Jay Zhangjie Wu*, Yuxuan Zhang*, Haithem Turki, Xuanchi Ren, Jun Gao, Mike Zheng Shou, Sanja Fidler, Zan Gojcic†, Huan Ling† (*共同第一作者, †共同指导)
+
+**会议**: CVPR 2025 (Oral)
+
+**论文**: [arXiv:2503.01774](https://arxiv.org/abs/2503.01774)
+
+**项目主页**: [https://research.nvidia.com/labs/toronto-ai/difix3d/](https://research.nvidia.com/labs/toronto-ai/difix3d/)
+
+**官方仓库**: [https://github.com/nv-tlabs/Difix3D](https://github.com/nv-tlabs/Difix3D)
+
+**Hugging Face**: [https://huggingface.co/nvidia/difix](https://huggingface.co/nvidia/difix)
+
+**状态**: ✅ 成功复现
+
+**位置**: `DIFIX3D+/Difix3D/`
+
+#### 摘要
+DIFIX3D+ 提出了一种单步扩散模型，通过去除渲染视图中的伪影来改进3D重建。该方法利用扩散模型来增强3D高斯溅射重建的质量。
+
+#### 主要特性
+- 单步扩散去除伪影
+- 支持参考图像引导
+- 兼容多种3D重建方法
+- GPU实时推理
+
+## 🚀 快速开始
+
+### 环境要求
+- Python 3.10+
+- CUDA 11.8+ (推荐用于GPU加速)
+- PyTorch 2.0+
+- 8GB+ GPU显存 (用于推理)
+
+### 安装
+
+#### DIFIX3D+
+
+```bash
+# 进入项目目录
+cd DIFIX3D+/Difix3D
+
+# 创建conda环境
+conda create -n difix3d python=3.10 -y
+conda activate difix3d
+
+# 安装PyTorch和CUDA
+conda install pytorch torchvision pytorch-cuda=11.8 -c pytorch -c nvidia -y
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 使用方法
+
+#### 基础推理
+
+```bash
+python test_quickstart.py
+```
+
+#### 自定义图像处理
+
+```python
+from pipeline_difix import DifixPipeline
+from diffusers.utils import load_image
+
+# 加载模型
+pipe = DifixPipeline.from_pretrained("nvidia/difix", trust_remote_code=True)
+pipe.to("cuda")
+
+# 处理图像
+input_image = load_image("path/to/your/image.png")
+output_image = pipe(
+    "remove degradation",
+    image=input_image,
+    num_inference_steps=1,
+    timesteps=[199],
+    guidance_scale=0.0
+).images[0]
+
+output_image.save("output.png")
+```
+
+## 📁 项目结构
+
+```
+3dgsplus/
+├── DIFIX3D+/              # DIFIX3D+ 实现
+│   └── Difix3D/
+│       ├── src/           # 源代码
+│       ├── assets/        # 示例图像
+│       ├── test_quickstart.py
+│       └── README.md
+├── README.md              # 本文件
+└── .gitignore
+```
+
+## 📄 引用
+
+如果您觉得本仓库对您的研究有帮助，请引用原始论文：
+
+### DIFIX3D+
+
+```bibtex
+@inproceedings{wu2025difix3d+,
+  title={DIFIX3D+: Improving 3D Reconstructions with Single-Step Diffusion Models},
+  author={Wu, Jay Zhangjie and Zhang, Yuxuan and Turki, Haithem and Ren, Xuanchi and Gao, Jun and Shou, Mike Zheng and Fidler, Sanja and Gojcic, Zan and Ling, Huan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={26024--26035},
+  year={2025}
+}
+```
+
+## 🔗 相关资源
+
+### 3D高斯溅射
+- [原始3DGS论文](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) - Kerbl et al., SIGGRAPH 2023
+- [Awesome 3D Gaussian Splatting](https://github.com/MrNeRF/awesome-3D-gaussian-splatting)
+
+### NeRF与新视角合成
+- [NeRF: Neural Radiance Fields](https://www.matthewtancik.com/nerf)
+- [Awesome NeRF](https://github.com/yenchenlin/awesome-NeRF)
+
+## 📝 许可证
+
+本仓库包含研究论文的实现。每个子项目遵循其原始许可证：
+
+- **DIFIX3D+**: NVIDIA许可证 (参见 `DIFIX3D+/Difix3D/LICENSE.txt`)
+
+具体许可信息请参考各项目目录。
+
+## 🙏 致谢
+
+感谢原始论文作者及其开源贡献：
+- NVIDIA Toronto AI Lab 的 DIFIX3D+
+- 3D高斯溅射社区
+- Hugging Face 模型托管
+
+## 📧 联系方式
+
+如有问题或建议：
+- 在本仓库提交issue
+- 论文相关问题请参考原始论文仓库
+
+## ⚠️ 免责声明
+
+本仓库仅用于研究和教育目的。实现基于公开发表的论文和代码。所有功劳归于原作者。
